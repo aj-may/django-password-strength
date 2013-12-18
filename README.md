@@ -4,11 +4,11 @@
 
 An extension of the Django password widget including a password strength meter and crack time powered by [zxcvbn](https://github.com/lowe/zxcvbn).
 
-{<1>}![Empty Password](http://thegoods.aj7may.com/content/images/2013/Dec/Screen_Shot_2013_12_18_at_9_05_38_AM.png)
+![Empty Password](http://thegoods.aj7may.com/content/images/2013/Dec/Screen_Shot_2013_12_18_at_9_05_38_AM.png)
 
-{<2>}![Weak Password](http://thegoods.aj7may.com/content/images/2013/Dec/Screen_Shot_2013_12_18_at_9_06_05_AM.png)
+![Weak Password](http://thegoods.aj7may.com/content/images/2013/Dec/Screen_Shot_2013_12_18_at_9_06_05_AM.png)
 
-{<3>}![Strong Password](http://thegoods.aj7may.com/content/images/2013/Dec/Screen_Shot_2013_12_18_at_9_06_32_AM.png)
+![Strong Password](http://thegoods.aj7may.com/content/images/2013/Dec/Screen_Shot_2013_12_18_at_9_06_32_AM.png)
 
 ### Install:
 `> pip install django-password-strength`
