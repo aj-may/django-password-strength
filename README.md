@@ -15,7 +15,7 @@ An extension of the Django password widget including a password strength meter a
 
 ### Usage:
 
-* Add `django-password-strength` to the installed apps of your Django Project
+* Add `django_package_strength` to the installed apps of your Django Project
 * Instead of using the django `PasswordInput` widget use the `PasswordStrengthInput`
 * Be sure to include the form's required media in the template. _ie._ `{{ form.media }}`
 * For easiest integration also include [Twitter Bootstrap](http://getbootstrap.com/)
