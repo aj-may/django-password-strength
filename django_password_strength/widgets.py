@@ -1,6 +1,7 @@
 from django.forms import PasswordInput
 from django.utils.safestring import mark_safe
 
+
 class PasswordStrengthInput(PasswordInput):
     def render(self, name, value, attrs=None):
         strength_markup = """
@@ -12,7 +13,10 @@ class PasswordStrengthInput(PasswordInput):
         </div>
         """
 
-        self.attrs['class'] = '%s password_strength' % self.attrs['class']
+        try:
+            self.attrs['class'] = '%s password_strength' % self.attrs['class']
+        except KeyError:
+            self.attrs['class'] = 'password_strength'
 
         return mark_safe( super(PasswordInput, self).render(name, value) + strength_markup )
 
