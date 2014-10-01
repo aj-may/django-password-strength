@@ -69,12 +69,12 @@ $(function($) {
                 password_strength_info.find('.label').addClass('hidden');
             }
 
-            password_strength_bar.width( ((result.score+1)/5)*100 + '%' );
+            password_strength_bar.width( ((result.score+1)/5)*100 + '%' ).attr('aria-valuenow', result.score + 1);
             password_strength_info.find('.password_strength_time').html(display_time(result.crack_time));
             password_strength_info.removeClass('hidden');
         } else {
             password_strength_bar.removeClass('progress-bar-success').addClass('progress-bar-warning');
-            password_strength_bar.width( '0%' );
+            password_strength_bar.width( '0%' ).attr('aria-valuenow', 0);
             password_strength_info.addClass('hidden');
         }
         match_passwords($(this));
