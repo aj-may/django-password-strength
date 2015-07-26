@@ -82,7 +82,7 @@
             if( seconds < year) return (1 + Math.ceil(seconds / month)) + ' ' + gettext('months');
             if( seconds < century) return (1 + Math.ceil(seconds / year)) + ' ' + gettext('years');
 
-            return 'centuries'
+            return gettext('centuries');
         },
 
         match_passwords: function(password_field, confirmation_fields) {
