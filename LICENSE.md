@@ -1,4 +1,4 @@
-__Copyright &copy; 2014 A.J. May and individual contributors. All rights reserved.__
+__Copyright &copy; 2015 A.J. May and individual contributors. All rights reserved.__
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

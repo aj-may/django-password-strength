@@ -4,3 +4,4 @@
 
 - Telonor
 - Allard Stijnman ([snoepkast](https://github.com/snoepkast))
+- Merouane Atig ([merwan](https://github.com/merwan))
