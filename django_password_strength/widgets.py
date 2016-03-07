@@ -11,7 +11,7 @@ class PasswordStrengthInputSettings(object):
                  show_warning_message=False, show_suggestions=False, min_score=2, min_length=8, max_length=128):
         self.show_strength_message = show_strength_message
         self.show_warning_message = show_warning_message
-        self.strength_bar_ui = strength_bar_ui
+        self.strength_bar_ui = strength_bar_ui or ProgressBarUI()
         self.show_suggestions = show_suggestions
         self.strength_message_format = strength_message_format or \
             "This password would take <em class='password_strength_time'></em> to crack."
@@ -143,7 +143,7 @@ class ProgressBarUI(object):
         Bootstrap = 0,
         jQueryUI = 1,
 
-    def __init__(self, style, height=None, width=None, rounded_corners=True):
+    def __init__(self, style=Styles.Bootstrap, height=None, width=None, rounded_corners=True):
         self.style = style
         self.height = height
         self.width = width
