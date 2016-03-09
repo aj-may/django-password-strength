@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-password-strength',
-    version='2.0.1',
+    version='2.0.2',
     url='http://thegoods.aj7may.com/django-password-strength',
     author='A.J. May',
     author_email='aj7may@gmail.com',
