@@ -2,11 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-password-strength',
-    version='1.2.1',
+    version='2.0.2',
     url='http://thegoods.aj7may.com/django-password-strength',
     author='A.J. May',
     author_email='aj7may@gmail.com',
-    description='This package contains an extention of the Django password widget including a password strength meter and crack time powered by zxcvbn.',
+    description='This package contains an extention of the Django password widget including a password strength meter '
+                'and crack time powered by zxcvbn.',
     keywords='password meter zxcvbn strength security django',
     license='BSD',
     packages=find_packages(),
@@ -23,5 +24,8 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Topic :: Internet :: WWW/HTTP',
+    ],
+    install_requires=[
+        "enum",
     ],
 )
