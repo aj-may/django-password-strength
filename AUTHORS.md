@@ -2,6 +2,6 @@
 
 ...and the folowing Django Password Strength contributors:
 
-- Telonor
 - Allard Stijnman ([snoepkast](https://github.com/snoepkast))
 - Merouane Atig ([merwan](https://github.com/merwan))
+- Telonor ([Telonor](https://github.com/Telonor))

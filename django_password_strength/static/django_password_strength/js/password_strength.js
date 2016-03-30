@@ -76,11 +76,26 @@
             if( typeof gettext !== 'function' ) { gettext = function(text) { return text; }; };
 
             if( seconds < minute ) return gettext('only an instant');
-            if( seconds < hour) return (1 + Math.ceil(seconds / minute)) + ' ' + gettext('minutes');
-            if( seconds < day) return (1 + Math.ceil(seconds / hour)) + ' ' + gettext('hours');
-            if( seconds < month) return (1 + Math.ceil(seconds / day)) + ' ' + gettext('days');
-            if( seconds < year) return (1 + Math.ceil(seconds / month)) + ' ' + gettext('months');
-            if( seconds < century) return (1 + Math.ceil(seconds / year)) + ' ' + gettext('years');
+            if( seconds < hour){
+                var minutes = 1 + Math.ceil(seconds / minute);
+                return minutes + ' ' + ngettext('minute', 'minutes', minutes);
+            }
+            if( seconds < day){
+                var hours = 1 + Math.ceil(seconds / hour);
+                return hours + ' ' + ngettext('hour', 'hours', hours);
+            }
+            if( seconds < month){
+                var days = 1 + Math.ceil(seconds / day);
+                return days + ' ' + ngettext('day', 'days', days);
+            }
+            if( seconds < year) {
+                var months = 1 + Math.ceil(seconds / month);
+                return months +  ' ' + ngettext('month', 'months', months);
+            }
+            if( seconds < century){
+                var years = 1 + Math.ceil(seconds / year);
+                return years + ' ' + ngettext('year', 'years', years);
+            }
 
             return gettext('centuries');
         },
