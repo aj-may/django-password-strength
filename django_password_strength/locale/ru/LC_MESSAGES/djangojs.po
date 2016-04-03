@@ -1,0 +1,67 @@
+# This file is distributed under the same license as the django-password-strength package.
+# Telonor <viievskiy.anton@yandex.ru>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: django-password-strength\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-30 10:25+0300\n"
+"PO-Revision-Date: 2016-04-01 09:49+0300\n"
+"Last-Translator: Anton Viievskiy <viievskiy.anton@yandex.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: static/django_password_strength/js/password_strength.js:78
+msgid "only an instant"
+msgstr "мгновение"
+
+#: static/django_password_strength/js/password_strength.js:81
+#| msgid "minutes"
+#| msgid_plural "minutes"
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "минута"
+msgstr[1] "минуты"
+msgstr[2] "минут"
+
+#: static/django_password_strength/js/password_strength.js:85
+#| msgid "hours"
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "час"
+msgstr[1] "часа"
+msgstr[2] "часов"
+
+#: static/django_password_strength/js/password_strength.js:89
+#| msgid "days"
+msgid "day"
+msgid_plural "days"
+msgstr[0] "день"
+msgstr[1] "дня"
+msgstr[2] "дней"
+
+#: static/django_password_strength/js/password_strength.js:93
+#| msgid "months"
+msgid "month"
+msgid_plural "months"
+msgstr[0] "месяц"
+msgstr[1] "месяца"
+msgstr[2] "месяцев"
+
+#: static/django_password_strength/js/password_strength.js:97
+#| msgid "years"
+msgid "year"
+msgid_plural "years"
+msgstr[0] "год"
+msgstr[1] "года"
+msgstr[2] "лет"
+
+#: static/django_password_strength/js/password_strength.js:100
+msgid "centuries"
+msgstr "вечность"
