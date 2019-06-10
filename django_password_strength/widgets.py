@@ -1,4 +1,5 @@
 from django.forms import PasswordInput
+from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -9,28 +10,15 @@ class PasswordStrengthInput(PasswordInput):
     """
 
     def render(self, name, value, attrs=None):
-        strength_markup = """
-        <div style="margin-top: 10px;">
-            <div class="progress" style="margin-bottom: 10px;">
-                <div class="progress-bar progress-bar-warning password_strength_bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" style="width: 0%%"></div>
-            </div>
-            <p class="text-muted password_strength_info hidden">
-                <span class="label label-danger">
-                    %s
-                </span>
-                <span style="margin-left:5px;">
-                    %s
-                </span>
-            </p>
-        </div>
-        """ % (_('Warning'), _('This password would take <em class="password_strength_time"></em> to crack.'))
-        
         try:
             self.attrs['class'] = '%s password_strength'.strip() % self.attrs['class']
         except KeyError:
             self.attrs['class'] = 'password_strength'
 
-        return mark_safe( super(PasswordInput, self).render(name, value, attrs) + strength_markup )
+        strength_markup = render_to_string("password_strength/progressbar.html",
+                                           context=attrs)
+
+        return mark_safe( super(PasswordInput, self).render(name, value, attrs) + strength_markup)
 
     class Media:
         js = (
