@@ -25,10 +25,10 @@ msgstr "Atenção:"
 
 #: .\django_password_strength\templates\password_strength\widgets\progressbar.html:11
 msgid ""
-"This password would take <em class=\"password_strength_time\"></em> to crack"
+"This password would take <em class=\"password_strength_time\"></em> to crack."
 msgstr ""
-"Essa senha para levaria <em class=\"password_strength_time\"></em> para ser "
-"descoberta"
+"Essa senha levaria <em class=\"password_strength_time\"></em> para ser "
+"descoberta."
 
 #: .\django_password_strength\templates\password_strength\widgets\strength-info.html:7
 msgid "Your passwords don't match."
