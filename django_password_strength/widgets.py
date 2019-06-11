@@ -1,7 +1,6 @@
 from django.forms import PasswordInput
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
 
 
 class PasswordStrengthInput(PasswordInput):
@@ -40,20 +39,11 @@ class PasswordConfirmationInput(PasswordInput):
         if self.confirm_with:
             self.attrs['data-confirm-with'] = 'id_%s' % self.confirm_with
 
-        confirmation_markup = """
-        <div style="margin-top: 10px;" class="hidden password_strength_info">
-            <p class="text-muted">
-                <span class="label label-danger">
-                    %s
-                </span>
-                <span style="margin-left:5px;">%s</span>
-            </p>
-        </div>
-        """ % (_('Warning'), _('Your passwords don\'t match.'))
-
         try:
             self.attrs['class'] = '%s password_confirmation'.strip() % self.attrs['class']
         except KeyError:
             self.attrs['class'] = 'password_confirmation'
 
-        return mark_safe( super(PasswordInput, self).render(name, value, attrs) + confirmation_markup )
+        confirmation_markup = render_to_string("password_strength/widgets/strength-info.html",
+                                               context=attrs)
+        return mark_safe(super(PasswordInput, self).render(name, value, attrs) + confirmation_markup)
