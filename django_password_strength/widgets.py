@@ -14,7 +14,7 @@ class PasswordStrengthInput(PasswordInput):
         except KeyError:
             self.attrs['class'] = 'password_strength'
 
-        strength_markup = render_to_string("password_strength/widgets/progressbar.html",
+        strength_markup = render_to_string("django_password_strength/widgets/progressbar.html",
                                            context=attrs)
 
         return mark_safe( super(PasswordInput, self).render(name, value, attrs) + strength_markup)
@@ -44,6 +44,6 @@ class PasswordConfirmationInput(PasswordInput):
         except KeyError:
             self.attrs['class'] = 'password_confirmation'
 
-        confirmation_markup = render_to_string("password_strength/widgets/strength-info.html",
+        confirmation_markup = render_to_string("django_password_strength/widgets/strength-info.html",
                                                context=attrs)
         return mark_safe(super(PasswordInput, self).render(name, value, attrs) + confirmation_markup)
