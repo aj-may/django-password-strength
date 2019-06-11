@@ -15,7 +15,7 @@ class PasswordStrengthInput(PasswordInput):
         except KeyError:
             self.attrs['class'] = 'password_strength'
 
-        strength_markup = render_to_string("password_strength/progressbar.html",
+        strength_markup = render_to_string("password_strength/widgets/progressbar.html",
                                            context=attrs)
 
         return mark_safe( super(PasswordInput, self).render(name, value, attrs) + strength_markup)
