@@ -14,6 +14,8 @@ class PasswordMutedInput(PasswordInput):
         }
 
     def render(self, name, value, attrs=None):
+        validators = self.attrs.pop('validators', [])
+
         autocomplete = 'autocomplete'
         if autocomplete not in attrs:
             attrs[autocomplete] = 'new-password'
@@ -22,7 +24,7 @@ class PasswordMutedInput(PasswordInput):
         final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
         # strength rules
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
-                                 context={'attrs': final_attrs})
+                                 context={'attrs': final_attrs, 'validators': validators})
         return mark_safe(html)
 
 
@@ -32,6 +34,8 @@ class PasswordStrengthInput(PasswordInput):
     """
 
     def render(self, name, value, attrs=None):
+        validators = self.attrs.pop('validators', [])
+
         try:
             self.attrs['class'] = '%s password_strength'.strip() % self.attrs['class']
         except KeyError:
@@ -48,7 +52,7 @@ class PasswordStrengthInput(PasswordInput):
                                  context=final_attrs)
         # strength rules
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
-                                 context={'attrs': final_attrs})
+                                 context={'attrs': final_attrs, 'validators': validators})
         return mark_safe(html)
 
     class Media(object):

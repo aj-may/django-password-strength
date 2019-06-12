@@ -2,7 +2,7 @@
 <script type="application/javascript">
     $(function () {
         var rules = {}
-        {% for validator in attrs.validators %}
+        {% for validator in validators %}
             rules = $.extend(true, rules, {{validator|jsonify|safe}})
         {% endfor %}
         $("#{{attrs.id}}").PassRequirements({
