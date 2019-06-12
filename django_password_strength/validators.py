@@ -5,6 +5,9 @@ from password_strength import PasswordPolicy
 
 
 class PolicyBaseValidator(BaseValidator):
+    def js_requirement(self):
+        return {}
+
     def __call__(self, value):
         value_cleaned = self.clean(value)
         params = {'limit_value': self.limit_value, 'show_value': value_cleaned, 'value': value}
@@ -28,3 +31,8 @@ class PolicyMinLengthValidator(PolicyBaseValidator):
 
     def compare(self, value, limit_value):
         return PasswordPolicy.from_names(length=limit_value).test(value)
+
+    def js_requirement(self):
+        return {'minlength': {
+            'minLength': self.limit_value
+        }}

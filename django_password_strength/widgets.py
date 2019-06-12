@@ -14,18 +14,25 @@ class PasswordStrengthInput(PasswordInput):
         except KeyError:
             self.attrs['class'] = 'password_strength'
 
-        strength_markup = render_to_string("django_password_strength/widgets/progressbar.html",
-                                           context=attrs)
         autocomplete = 'autocomplete'
         if autocomplete not in attrs:
             attrs[autocomplete] = 'new-password'
 
-        return mark_safe( super(PasswordInput, self).render(name, value, attrs) + strength_markup)
+        html = super(PasswordInput, self).render(name, value, attrs)
+        final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+        # strength markup
+        html += render_to_string("django_password_strength/widgets/progressbar.html",
+                                 context=final_attrs)
+        # strength rules
+        html += render_to_string("django_password_strength/widgets/strength-rules.txt",
+                                 context={'attrs': final_attrs})
+        return mark_safe(html)
 
     class Media:
         js = (
             'django_password_strength/js/zxcvbn.js',
             'django_password_strength/js/password_strength.js',
+            'django_password_strength/js/pass-requirements.js',
         )
         css = {
             'screen': ('django_password_strength/css/password-strength.css',)
@@ -39,7 +46,7 @@ class PasswordConfirmationInput(PasswordInput):
 
     def __init__(self, confirm_with=None, attrs=None, render_value=False):
         super(PasswordConfirmationInput, self).__init__(attrs, render_value)
-        self.confirm_with=confirm_with
+        self.confirm_with = confirm_with
 
     def render(self, name, value, attrs=None):
         if self.confirm_with:

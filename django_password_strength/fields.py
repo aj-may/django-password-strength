@@ -1,6 +1,6 @@
 from django import forms
 
-from django_password_strength.validators import PolicyMinLengthValidator
+from django_password_strength.validators import PolicyMinLengthValidator, PolicyBaseValidator
 from django_password_strength.widgets import PasswordStrengthInput, PasswordConfirmationInput
 
 
@@ -22,6 +22,18 @@ class PasswordField(forms.CharField):
 
         if min_length is not None:
             self.validators.append(PolicyMinLengthValidator(int(min_length)))
+
+        # validators
+        validators_attrs = self.widget_validators_attrs(self.widget)
+        if validators_attrs and hasattr(self.widget, "attrs"):
+            self.widget.attrs.update(validators_attrs)
+
+    def widget_validators_attrs(self, widget):
+        attrs = {'validators': []}
+        for validator in self.validators:
+            if isinstance(validator, PolicyBaseValidator):
+                attrs['validators'].append(validator.js_requirement())
+        return attrs
 
 
 class PasswordConfirmationField(forms.CharField):
