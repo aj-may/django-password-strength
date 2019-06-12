@@ -39,8 +39,10 @@ class PasswordField(PasswordCharField):
                  lowercase_length=None,
                  uppercase_length=None,
                  numbers_length=None,
+                 show_progressbar_info=True,
                  strip=True,
                  *args, **kwargs):
+        self.show_progressbar_info = show_progressbar_info
         super(PasswordField, self).__init__(max_length=max_length,
                                             min_length=None,
                                             strip=strip,
@@ -76,6 +78,11 @@ class PasswordField(PasswordCharField):
         for validator in self.validators:
             if isinstance(validator, PolicyBaseValidator):
                 attrs['validators'].append(validator.js_requirement())
+        return attrs
+
+    def widget_attrs(self, widget):
+        attrs = super(PasswordField, self).widget_attrs(widget)
+        attrs['show_progressbar_info'] = self.show_progressbar_info
         return attrs
 
 

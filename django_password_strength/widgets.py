@@ -36,7 +36,7 @@ class PasswordStrengthInput(PasswordInput):
 
     def render(self, name, value, attrs=None):
         validators = self.attrs.pop('validators', [])
-
+        show_progressbar_info = self.attrs.pop('show_progressbar_info', True)
         try:
             self.attrs['class'] = '%s password_strength'.strip() % self.attrs['class']
         except KeyError:
@@ -52,8 +52,9 @@ class PasswordStrengthInput(PasswordInput):
         html = render_to_string("django_password_strength/widgets/progressbar.html",
                                 context=final_attrs)
         html += super(PasswordInput, self).render(name, value, attrs)
-        html += render_to_string("django_password_strength/widgets/progressbar-info.html",
-                                 context=final_attrs)
+        if show_progressbar_info:
+            html += render_to_string("django_password_strength/widgets/progressbar-info.html",
+                                     context=final_attrs)
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
                                  context={'attrs': final_attrs, 'validators': validators})
         return mark_safe(html)
