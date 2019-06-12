@@ -75,3 +75,26 @@ class PolicyContainLowercaseValidator(PolicyBaseValidator):
         return {'containLowercase': {
             'minLength': self.limit_value
         }}
+
+
+class PolicyContainUppercaseValidator(PolicyBaseValidator):
+    message = ungettext_lazy(
+        'Your input should contain at least %(limit_value)d upper case character (it has %(show_value)d).',
+        'Your input should contain at least %(limit_value)d upper case characters (it has %(show_value)d).',
+        'limit_value')
+    code = 'special_length'
+
+    def __init__(self, *args, **kwargs):
+        super(PolicyContainUppercaseValidator, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def clean(value):
+        return pwd.PasswordStats(value).letters_uppercase
+
+    def compare(self, value, limit_value):
+        return value < limit_value
+
+    def js_requirement(self):
+        return {'containUppercase': {
+            'minLength': self.limit_value
+        }}

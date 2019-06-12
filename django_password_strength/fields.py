@@ -4,8 +4,8 @@ from django_password_strength.validators import (
     PolicyMinLengthValidator,
     PolicyBaseValidator,
     PolicyContainSpecialCharsValidator,
-    PolicyContainLowercaseValidator
-)
+    PolicyContainLowercaseValidator,
+    PolicyContainUppercaseValidator)
 from django_password_strength.widgets import PasswordStrengthInput, PasswordConfirmationInput
 
 
@@ -19,6 +19,7 @@ class PasswordField(forms.CharField):
                  min_length=None,
                  special_length=None,
                  lowercase_length=None,
+                 uppercase_length=None,
                  strip=True,
                  *args, **kwargs):
         super(PasswordField, self).__init__(max_length=max_length,
@@ -28,6 +29,7 @@ class PasswordField(forms.CharField):
         self.min_length = min_length
         self.special_length = special_length
         self.lowercase_length = lowercase_length
+        self.uppercase_length = uppercase_length
 
         if min_length is not None:
             self.validators.append(PolicyMinLengthValidator(int(min_length)))
@@ -37,6 +39,9 @@ class PasswordField(forms.CharField):
 
         if lowercase_length is not None:
             self.validators.append(PolicyContainLowercaseValidator(int(lowercase_length)))
+
+        if uppercase_length is not None:
+            self.validators.append(PolicyContainUppercaseValidator(int(uppercase_length)))
 
         # validators
         validators_attrs = self.widget_validators_attrs(self.widget)
