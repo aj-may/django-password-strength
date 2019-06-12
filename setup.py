@@ -11,6 +11,7 @@ setup(
     license='BSD',
     packages=find_packages(),
     include_package_data=True,
+    install_requires = ['password-strength'],
     zip_safe=False,
     classifiers=[
         'Development Status :: 5 - Production/Stable',

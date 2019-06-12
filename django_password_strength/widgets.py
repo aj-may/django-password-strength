@@ -16,14 +16,20 @@ class PasswordStrengthInput(PasswordInput):
 
         strength_markup = render_to_string("django_password_strength/widgets/progressbar.html",
                                            context=attrs)
+        autocomplete = 'autocomplete'
+        if autocomplete not in attrs:
+            attrs[autocomplete] = 'new-password'
 
         return mark_safe( super(PasswordInput, self).render(name, value, attrs) + strength_markup)
 
     class Media:
         js = (
-            'django_password_strength/js/zxcvbn-async.js',
+            'django_password_strength/js/zxcvbn.js',
             'django_password_strength/js/password_strength.js',
         )
+        css = {
+            'screen': ('django_password_strength/css/password-strength.css',)
+        }
 
 
 class PasswordConfirmationInput(PasswordInput):
@@ -43,6 +49,10 @@ class PasswordConfirmationInput(PasswordInput):
             self.attrs['class'] = '%s password_confirmation'.strip() % self.attrs['class']
         except KeyError:
             self.attrs['class'] = 'password_confirmation'
+
+        autocomplete = 'autocomplete'
+        if autocomplete not in attrs:
+            attrs[autocomplete] = 'new-password'
 
         confirmation_markup = render_to_string("django_password_strength/widgets/strength-info.html",
                                                context=attrs)
