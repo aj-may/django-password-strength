@@ -3,6 +3,29 @@ from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
 
+class PasswordMutedInput(PasswordInput):
+    """Hide related infos"""
+    class Media(object):
+        js = (
+            'django_password_strength/js/pass-requirements.js',
+        )
+        css = {
+            'screen': ('django_password_strength/css/password-strength.css',)
+        }
+
+    def render(self, name, value, attrs=None):
+        autocomplete = 'autocomplete'
+        if autocomplete not in attrs:
+            attrs[autocomplete] = 'new-password'
+
+        html = super(PasswordInput, self).render(name, value, attrs)
+        final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+        # strength rules
+        html += render_to_string("django_password_strength/widgets/strength-rules.txt",
+                                 context={'attrs': final_attrs})
+        return mark_safe(html)
+
+
 class PasswordStrengthInput(PasswordInput):
     """
     Form widget to show the user how strong his/her password is.
@@ -28,7 +51,7 @@ class PasswordStrengthInput(PasswordInput):
                                  context={'attrs': final_attrs})
         return mark_safe(html)
 
-    class Media:
+    class Media(object):
         js = (
             'django_password_strength/js/zxcvbn.js',
             'django_password_strength/js/password_strength.js',

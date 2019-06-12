@@ -7,10 +7,27 @@ from django_password_strength.validators import (
     PolicyContainLowercaseValidator,
     PolicyContainUppercaseValidator,
     PolicyContainNumbersValidator)
-from django_password_strength.widgets import PasswordStrengthInput, PasswordConfirmationInput
+from django_password_strength.widgets import (
+    PasswordStrengthInput,
+    PasswordConfirmationInput,
+    PasswordMutedInput
+)
+
+# import names
+__all__ = ['PasswordField', 'PasswordConfirmationField']
 
 
-class PasswordField(forms.CharField):
+class PasswordCharField(forms.CharField):
+    def __init__(self, strength_view=True,
+                 *args, **kwargs):
+        self.strength_view = strength_view
+        # Disables the progress bar and related information
+        if not strength_view and 'widget' not in kwargs:
+            kwargs['widget'] = PasswordMutedInput
+        super(PasswordCharField, self).__init__(*args, **kwargs)
+
+
+class PasswordField(PasswordCharField):
     """Password field"""
 
     widget = PasswordStrengthInput
