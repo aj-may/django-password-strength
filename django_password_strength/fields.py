@@ -1,6 +1,7 @@
 from django import forms
 
-from django_password_strength.validators import PolicyMinLengthValidator, PolicyBaseValidator
+from django_password_strength.validators import PolicyMinLengthValidator, PolicyBaseValidator, \
+    PolicyContainSpecialCharsValidator
 from django_password_strength.widgets import PasswordStrengthInput, PasswordConfirmationInput
 
 
@@ -12,6 +13,7 @@ class PasswordField(forms.CharField):
     def __init__(self,
                  max_length=None,
                  min_length=None,
+                 special_length=None,
                  strip=True,
                  *args, **kwargs):
         super(PasswordField, self).__init__(max_length=max_length,
@@ -19,9 +21,13 @@ class PasswordField(forms.CharField):
                                             strip=strip,
                                             *args, **kwargs)
         self.min_length = min_length
+        self.special_length = special_length
 
         if min_length is not None:
             self.validators.append(PolicyMinLengthValidator(int(min_length)))
+
+        if special_length is not None:
+            self.validators.append(PolicyContainSpecialCharsValidator(int(special_length)))
 
         # validators
         validators_attrs = self.widget_validators_attrs(self.widget)
