@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 12:35-0300\n"
+"POT-Creation-Date: 2019-06-12 18:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,82 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\django_password_strength\templates\password_strength\widgets\progressbar.html:8
-#: .\django_password_strength\templates\password_strength\widgets\strength-info.html:5
+#: .\django_password_strength\templates\django_password_strength\widgets\progressbar-info.html:5
+#: .\django_password_strength\templates\django_password_strength\widgets\strength-info.html:6
 msgid "Warning:"
 msgstr "Atenção:"
 
-#: .\django_password_strength\templates\password_strength\widgets\progressbar.html:11
+#: .\django_password_strength\templates\django_password_strength\widgets\progressbar-info.html:8
 msgid ""
 "This password would take <em class=\"password_strength_time\"></em> to crack."
 msgstr ""
 "Essa senha levaria <em class=\"password_strength_time\"></em> para ser "
 "descoberta."
 
-#: .\django_password_strength\templates\password_strength\widgets\strength-info.html:7
+#: .\django_password_strength\templates\django_password_strength\widgets\strength-info.html:8
 msgid "Your passwords don't match."
 msgstr "As duas senhas não combinam."
+
+#: .\django_password_strength\validators.py:13
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] "Garanta que o valor tenha pelo menos %(limit_value)d caracter (tem "
+"%(show_value)d)."
+msgstr[1] "Garanta que o valor tenha pelo menos %(limit_value)d caracteres (tem "
+"%(show_value)d)."
+
+#: .\django_password_strength\validators.py:36
+#, python-format
+msgid "Your input should contain at least %(limit_value)d special character (it has "
+"%(show_value)d)."
+msgid_plural "Your input should contain at least %(limit_value)d special characters (it "
+"has %(show_value)d)."
+
+msgstr[0] "Deveria conter pelo menos %(limit_value)d caracter especial (tem "
+"has %(show_value)d)."
+msgstr[1] "Deveria conter pelo menos %(limit_value)d caracteres especiais (tem "
+"%(show_value)d)."
+
+#: .\django_password_strength\validators.py:59
+#, python-format
+msgid ""
+"Your input should contain at least %(limit_value)d lower case character (it "
+"has %(show_value)d)."
+msgid_plural ""
+"Your input should contain at least %(limit_value)d lower case characters (it "
+"has %(show_value)d)."
+msgstr[0] "Deveria conter pelo menos %(limit_value)d letra minúscula (tem "
+"%(show_value)d)."
+msgstr[1] "Deveria conter pelo menos %(limit_value)d letras minúsculas (tem "
+"%(show_value)d)."
+
+#: .\django_password_strength\validators.py:82
+#, python-format
+msgid ""
+"Your input should contain at least %(limit_value)d upper case character (it "
+"has %(show_value)d)."
+msgid_plural ""
+"Your input should contain at least %(limit_value)d upper case characters (it "
+"has %(show_value)d)."
+msgstr[0] "Deveria conter pelo menos %(limit_value)d letra maiúscula (tem "
+"%(show_value)d)."
+msgstr[1] "Deveria conter pelo menos %(limit_value)d letras maiúsculas (tem "
+"%(show_value)d)."
+
+#: .\django_password_strength\validators.py:105
+#, python-format
+msgid ""
+"Your input should contain at least %(limit_value)d number (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Your input should contain at least %(limit_value)d numbers (it has "
+"%(show_value)d)."
+msgstr[0] "Deveria conter pelo menos  %(limit_value)d número (tem "
+"%(show_value)d)."
+msgstr[1] "Deveria conter pelo menos  %(limit_value)d números (tem "
+"%(show_value)d)."
