@@ -30,16 +30,23 @@ For the javascript translations be sure to add the javascript translation catalo
 _forms.py_
 
     from django import forms
-    from django_password_strength.widgets import PasswordStrengthInput, PasswordConfirmationInput
+    from django_password_strength.fields import PasswordField, PasswordConfirmationField
     
     class SignupForm(forms.Form):
         username = forms.CharField()
-        passphrase = forms.CharField(
-            widget=PasswordStrengthInput()
+        passphrase = PasswordField(
+            # optional options
+            # min_length=5,
+            # special_length=2,
+            # lowercase_length=3,
+            # uppercase_length=6,
+            # numbers_length=2,
+            # the password strength bar is displayed
+            strength_view=True,
+            # if information (text) strength bar appears
+            show_progressbar_info=True
         )
-        confirm_passphrase = forms.CharField(
-            widget=PasswordConfirmationInput()
-        )
+        confirm_passphrase = PasswordConfirmationField()
 
 ### Example using multiple password fields:
 
