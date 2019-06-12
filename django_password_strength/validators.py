@@ -98,3 +98,26 @@ class PolicyContainUppercaseValidator(PolicyBaseValidator):
         return {'containUppercase': {
             'minLength': self.limit_value
         }}
+
+
+class PolicyContainNumbersValidator(PolicyBaseValidator):
+    message = ungettext_lazy(
+        'Your input should contain at least %(limit_value)d number (it has %(show_value)d).',
+        'Your input should contain at least %(limit_value)d numbers (it has %(show_value)d).',
+        'limit_value')
+    code = 'number_length'
+
+    def __init__(self, *args, **kwargs):
+        super(PolicyContainNumbersValidator, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def clean(value):
+        return pwd.PasswordStats(value).numbers
+
+    def compare(self, value, limit_value):
+        return value < limit_value
+
+    def js_requirement(self):
+        return {'containNumbers': {
+            'minLength': self.limit_value
+        }}
