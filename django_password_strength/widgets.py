@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 
 class PasswordMutedInput(PasswordInput):
     """Hide related infos"""
+
     class Media(object):
         js = (
             'django_password_strength/js/pass-requirements.js',
@@ -45,12 +46,14 @@ class PasswordStrengthInput(PasswordInput):
         if autocomplete not in attrs:
             attrs[autocomplete] = 'new-password'
 
-        html = super(PasswordInput, self).render(name, value, attrs)
         final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+
         # strength markup
-        html += render_to_string("django_password_strength/widgets/progressbar.html",
+        html = render_to_string("django_password_strength/widgets/progressbar.html",
+                                context=final_attrs)
+        html += super(PasswordInput, self).render(name, value, attrs)
+        html += render_to_string("django_password_strength/widgets/progressbar-info.html",
                                  context=final_attrs)
-        # strength rules
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
                                  context={'attrs': final_attrs, 'validators': validators})
         return mark_safe(html)

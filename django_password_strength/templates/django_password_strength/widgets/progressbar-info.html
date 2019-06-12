@@ -1,0 +1,11 @@
+{% load i18n %}
+<p class="text-muted password_strength_info hidden">
+    <small>
+    <span class="label label-danger text-danger">
+    {% trans "Warning:" %}
+    </span>
+    <span style="margin-left:5px;">
+    {% trans 'This password would take <em class="password_strength_time"></em> to crack.' %}
+    </span>
+    </small>
+</p>
