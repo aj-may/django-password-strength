@@ -1,18 +1,11 @@
-from django.core.exceptions import ValidationError
+import password_strength as pwd
 from django.core.validators import BaseValidator
 from django.utils.translation import ungettext_lazy
-import password_strength as pwd
 
 
 class PolicyBaseValidator(BaseValidator):
     def js_requirement(self):
         return {}
-
-    def __call__(self, value):
-        value_cleaned = self.clean(value)
-        params = {'limit_value': self.limit_value, 'show_value': value_cleaned, 'value': value}
-        if self.compare(value, self.limit_value):
-            raise ValidationError(self.message, code=self.code, params=params)
 
 
 class PolicyMinLengthValidator(PolicyBaseValidator):
@@ -30,7 +23,7 @@ class PolicyMinLengthValidator(PolicyBaseValidator):
         return pwd.PasswordStats(value).length
 
     def compare(self, value, limit_value):
-        return pwd.PasswordPolicy.from_names(length=limit_value).test(value)
+        return value < limit_value
 
     def js_requirement(self):
         return {'minlength': {
@@ -53,9 +46,32 @@ class PolicyContainSpecialCharsValidator(PolicyBaseValidator):
         return pwd.PasswordStats(value).special_characters
 
     def compare(self, value, limit_value):
-        return pwd.PasswordPolicy.from_names(special=limit_value).test(value)
+        return value < limit_value
 
     def js_requirement(self):
         return {'containSpecialChars': {
+            'minLength': self.limit_value
+        }}
+
+
+class PolicyContainLowercaseValidator(PolicyBaseValidator):
+    message = ungettext_lazy(
+        'Your input should contain at least %(limit_value)d lower case character (it has %(show_value)d).',
+        'Your input should contain at least %(limit_value)d lower case characters (it has %(show_value)d).',
+        'limit_value')
+    code = 'special_length'
+
+    def __init__(self, *args, **kwargs):
+        super(PolicyContainLowercaseValidator, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def clean(value):
+        return pwd.PasswordStats(value).letters_lowercase
+
+    def compare(self, value, limit_value):
+        return value < limit_value
+
+    def js_requirement(self):
+        return {'containLowercase': {
             'minLength': self.limit_value
         }}
