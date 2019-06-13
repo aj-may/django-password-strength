@@ -59,7 +59,7 @@ class PolicyContainLowercaseValidator(PolicyBaseValidator):
         'Your input should contain at least %(limit_value)d lower case character (it has %(show_value)d).',
         'Your input should contain at least %(limit_value)d lower case characters (it has %(show_value)d).',
         'limit_value')
-    code = 'special_length'
+    code = 'lowercase_length'
 
     def __init__(self, *args, **kwargs):
         super(PolicyContainLowercaseValidator, self).__init__(*args, **kwargs)
@@ -82,7 +82,7 @@ class PolicyContainUppercaseValidator(PolicyBaseValidator):
         'Your input should contain at least %(limit_value)d upper case character (it has %(show_value)d).',
         'Your input should contain at least %(limit_value)d upper case characters (it has %(show_value)d).',
         'limit_value')
-    code = 'special_length'
+    code = 'uppercase_length'
 
     def __init__(self, *args, **kwargs):
         super(PolicyContainUppercaseValidator, self).__init__(*args, **kwargs)
