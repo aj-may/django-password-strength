@@ -6,7 +6,8 @@
             rules = $.extend(true, rules, {{validator|jsonify|safe}})
         {% endfor %}
         $("#{{attrs.id}}").PassRequirements({
-            rules: rules
+            rules: rules,
+            defaults: {{validators_defaults|jsonify|safe}}
         })
     });
 </script>

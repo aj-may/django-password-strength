@@ -40,6 +40,7 @@ class PasswordField(PasswordCharField):
                  uppercase_length=None,
                  numbers_length=None,
                  show_progressbar_info=True,
+                 validators_defaults=True,
                  strip=True,
                  *args, **kwargs):
         self.show_progressbar_info = show_progressbar_info
@@ -72,6 +73,7 @@ class PasswordField(PasswordCharField):
         validators_attrs = self.widget_validators_attrs(self.widget)
         if validators_attrs and hasattr(self.widget, "attrs"):
             self.widget.attrs.update(validators_attrs)
+        self.widget.attrs['validators_defaults'] = validators_defaults
 
     def widget_validators_attrs(self, widget):
         attrs = {'validators': []}

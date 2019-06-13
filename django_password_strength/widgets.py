@@ -16,6 +16,7 @@ class PasswordMutedInput(PasswordInput):
 
     def render(self, name, value, attrs=None):
         validators = self.attrs.pop('validators', [])
+        validators_defaults = self.attrs.pop('validators_defaults', True)
 
         autocomplete = 'autocomplete'
         if autocomplete not in attrs:
@@ -25,7 +26,9 @@ class PasswordMutedInput(PasswordInput):
         final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
         # strength rules
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
-                                 context={'attrs': final_attrs, 'validators': validators})
+                                 context={'attrs': final_attrs,
+                                          'validators': validators,
+                                          'validators_defaults': validators_defaults})
         return mark_safe(html)
 
 
@@ -37,6 +40,7 @@ class PasswordStrengthInput(PasswordInput):
     def render(self, name, value, attrs=None):
         validators = self.attrs.pop('validators', [])
         show_progressbar_info = self.attrs.pop('show_progressbar_info', True)
+        validators_defaults = self.attrs.pop('validators_defaults', True)
         try:
             self.attrs['class'] = '%s password_strength'.strip() % self.attrs['class']
         except KeyError:
@@ -56,7 +60,9 @@ class PasswordStrengthInput(PasswordInput):
             html += render_to_string("django_password_strength/widgets/progressbar-info.html",
                                      context=final_attrs)
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
-                                 context={'attrs': final_attrs, 'validators': validators})
+                                 context={'attrs': final_attrs,
+                                          'validators': validators,
+                                          'validators_defaults': validators_defaults})
         return mark_safe(html)
 
     class Media(object):

@@ -1,6 +1,6 @@
 import password_strength as pwd
 from django.core.validators import BaseValidator
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import gettext, ungettext_lazy
 
 
 class PolicyBaseValidator(BaseValidator):
@@ -27,7 +27,8 @@ class PolicyMinLengthValidator(PolicyBaseValidator):
 
     def js_requirement(self):
         return {'minlength': {
-            'minLength': self.limit_value
+            'minLength': self.limit_value,
+            'text': gettext('be at least minLength characters long'),
         }}
 
 
@@ -50,7 +51,10 @@ class PolicyContainSpecialCharsValidator(PolicyBaseValidator):
 
     def js_requirement(self):
         return {'containSpecialChars': {
-            'minLength': self.limit_value
+            'minLength': self.limit_value,
+            'text': gettext('Your input should contain at least minLength special character'),
+            'regex': "([^!%&@#$^*?_~])",
+            'regex_flags': 'g'
         }}
 
 
@@ -73,14 +77,15 @@ class PolicyContainLowercaseValidator(PolicyBaseValidator):
 
     def js_requirement(self):
         return {'containLowercase': {
-            'minLength': self.limit_value
+            'minLength': self.limit_value,
+            'text': gettext("Your input should contain at least minLength lower case character")
         }}
 
 
 class PolicyContainUppercaseValidator(PolicyBaseValidator):
     message = ungettext_lazy(
         'Your input should contain at least %(limit_value)d upper case character (it has %(show_value)d).',
-        'Your input should contain at least %(limit_value)d upper case characters (it has %(show_value)d).',
+        'Your input should contain at least %(limit_value)d upper case characters (it has %(show_value)d).'
         'limit_value')
     code = 'uppercase_length'
 
@@ -96,7 +101,8 @@ class PolicyContainUppercaseValidator(PolicyBaseValidator):
 
     def js_requirement(self):
         return {'containUppercase': {
-            'minLength': self.limit_value
+            'minLength': self.limit_value,
+            'text': gettext("Your input should contain at least minLength upper case character")
         }}
 
 
@@ -119,5 +125,6 @@ class PolicyContainNumbersValidator(PolicyBaseValidator):
 
     def js_requirement(self):
         return {'containNumbers': {
-            'minLength': self.limit_value
+            'minLength': self.limit_value,
+            'text': gettext("Your input should contain at least minLength number")
         }}
