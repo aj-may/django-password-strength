@@ -20,31 +20,31 @@ msgstr ""
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:32
 msgid "be at least minLength characters long"
-msgstr ""
+msgstr "Deveria ter pelo menos minLength caractere(s)"
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:36
 msgid "Your input should contain at least minLength special character"
-msgstr ""
+msgstr "Deveria ter pelo menos minLength caractere(s) especial"
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:41
 msgid "Your input should contain at least minLength lower case character"
-msgstr ""
+msgstr "Deveria ter pelo menos minLength letra(s) minúscula(s)"
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:46
 msgid "Your input should contain at least minLength upper case character"
-msgstr ""
+msgstr "Deveria ter pelo menos minLength letra(s) maiúscula(s)"
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:51
 msgid "Your input should contain at least minLength number"
-msgstr ""
+msgstr "Deveria ter pelo menos minLength número(s)"
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:89
 msgid "Password Requirements"
-msgstr ""
+msgstr "Requerimentos da senha"
 
 #: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:93
 msgid "Your password should:"
-msgstr ""
+msgstr "Sua senha deveria:"
 
 #: .\django_password_strength\static\django_password_strength\js\password_strength.js:78
 msgid "only an instant"
