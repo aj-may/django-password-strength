@@ -35,7 +35,8 @@ if (typeof jQuery === 'undefined') {
                 containSpecialChars: {
                     text: gettext("Your input should contain at least minLength special character"),
                     minLength: 1,
-                    regex: new RegExp('([^!%&@#$^*?_~])', 'g')
+                    regex: '([^!%&@#$^*?_~])',
+                    regex_flags: 'g'
                 },
                 containLowercase: {
                     text: gettext("Your input should contain at least minLength lower case character"),
@@ -72,7 +73,11 @@ if (typeof jQuery === 'undefined') {
             $(this).keyup(function () {
                 var this_ = $(this);
                 Object.getOwnPropertyNames(defaults.rules).forEach(function (val, idx, array) {
-                    if (this_.val().replace(defaults.rules[val].regex, "").length > defaults.rules[val].minLength - 1) {
+                    var rules = defaults.rules[val];
+                    if (typeof rules.regex == 'string') {
+                        rules.regex = new RegExp(rules.regex, rules.regex_flags ? rules.regex_flags: null);
+                    }
+                    if (this_.val().replace(rules.regex, "").length > defaults.rules[val].minLength - 1) {
                         this_.next('.popover').find('#' + val).css('text-decoration', 'line-through');
                     } else {
                         this_.next('.popover').find('#' + val).css('text-decoration', 'none');
