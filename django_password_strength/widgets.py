@@ -1,9 +1,20 @@
 from django.forms import PasswordInput
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
+import django
 
 
-class PasswordMutedInput(PasswordInput):
+class PasswordInputCompat(PasswordInput):
+
+    def build_attrs(self, attrs, extra_attrs=None, **kwargs):
+        if django.VERSION >= (1, 11):
+            return super(PasswordInputCompat, self).build_attrs(
+                attrs, extra_attrs=extra_attrs)
+        else:
+            return super(PasswordInputCompat, self).build_attrs(attrs, **kwargs)
+
+
+class PasswordMutedInput(PasswordInputCompat):
     """Hide related infos"""
 
     class Media(object):
@@ -14,7 +25,7 @@ class PasswordMutedInput(PasswordInput):
             'screen': ('django_password_strength/css/password-strength.css',)
         }
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, **kwargs):
         validators = self.attrs.pop('validators', [])
         validators_defaults = self.attrs.pop('validators_defaults', True)
 
@@ -22,7 +33,7 @@ class PasswordMutedInput(PasswordInput):
         if autocomplete not in attrs:
             attrs[autocomplete] = 'new-password'
 
-        html = super(PasswordInput, self).render(name, value, attrs)
+        html = super(PasswordInput, self).render(name, value, attrs, **kwargs)
         final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
         # strength rules
         html += render_to_string("django_password_strength/widgets/strength-rules.txt",
@@ -32,12 +43,12 @@ class PasswordMutedInput(PasswordInput):
         return mark_safe(html)
 
 
-class PasswordStrengthInput(PasswordInput):
+class PasswordStrengthInput(PasswordInputCompat):
     """
     Form widget to show the user how strong his/her password is.
     """
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, **kwargs):
         validators = self.attrs.pop('validators', [])
         show_progressbar_info = self.attrs.pop('show_progressbar_info', True)
         validators_defaults = self.attrs.pop('validators_defaults', True)
@@ -55,7 +66,7 @@ class PasswordStrengthInput(PasswordInput):
         # strength markup
         html = render_to_string("django_password_strength/widgets/progressbar.html",
                                 context=final_attrs)
-        html += super(PasswordInput, self).render(name, value, attrs)
+        html += super(PasswordInput, self).render(name, value, attrs, **kwargs)
         if show_progressbar_info:
             html += render_to_string("django_password_strength/widgets/progressbar-info.html",
                                      context=final_attrs)
@@ -76,7 +87,7 @@ class PasswordStrengthInput(PasswordInput):
         }
 
 
-class PasswordConfirmationInput(PasswordInput):
+class PasswordConfirmationInput(PasswordInputCompat):
     """
     Form widget to confirm the users password by letting him/her type it again.
     """
@@ -85,7 +96,7 @@ class PasswordConfirmationInput(PasswordInput):
         super(PasswordConfirmationInput, self).__init__(attrs, render_value)
         self.confirm_with = confirm_with
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, **kwargs):
         if self.confirm_with:
             self.attrs['data-confirm-with'] = 'id_%s' % self.confirm_with
 
@@ -100,4 +111,4 @@ class PasswordConfirmationInput(PasswordInput):
 
         confirmation_markup = render_to_string("django_password_strength/widgets/strength-info.html",
                                                context=attrs)
-        return mark_safe(super(PasswordInput, self).render(name, value, attrs) + confirmation_markup)
+        return mark_safe(super(PasswordInput, self).render(name, value, attrs, **kwargs) + confirmation_markup)
