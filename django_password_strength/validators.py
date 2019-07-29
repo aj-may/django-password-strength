@@ -18,8 +18,7 @@ class PolicyMinLengthValidator(PolicyBaseValidator):
     def __init__(self, *args, **kwargs):
         super(PolicyMinLengthValidator, self).__init__(*args, **kwargs)
 
-    @staticmethod
-    def clean(value):
+    def clean(self, value):
         return pwd.PasswordStats(value).length
 
     def compare(self, value, limit_value):
@@ -42,8 +41,7 @@ class PolicyContainSpecialCharsValidator(PolicyBaseValidator):
     def __init__(self, *args, **kwargs):
         super(PolicyContainSpecialCharsValidator, self).__init__(*args, **kwargs)
 
-    @staticmethod
-    def clean(value):
+    def clean(self, value):
         return pwd.PasswordStats(value).special_characters
 
     def compare(self, value, limit_value):
@@ -68,8 +66,7 @@ class PolicyContainLowercaseValidator(PolicyBaseValidator):
     def __init__(self, *args, **kwargs):
         super(PolicyContainLowercaseValidator, self).__init__(*args, **kwargs)
 
-    @staticmethod
-    def clean(value):
+    def clean(self, value):
         return pwd.PasswordStats(value).letters_lowercase
 
     def compare(self, value, limit_value):
@@ -94,8 +91,7 @@ class PolicyContainUppercaseValidator(PolicyBaseValidator):
     def __init__(self, *args, **kwargs):
         super(PolicyContainUppercaseValidator, self).__init__(*args, **kwargs)
 
-    @staticmethod
-    def clean(value):
+    def clean(self, value):
         return pwd.PasswordStats(value).letters_uppercase
 
     def compare(self, value, limit_value):
@@ -120,8 +116,7 @@ class PolicyContainNumbersValidator(PolicyBaseValidator):
     def __init__(self, *args, **kwargs):
         super(PolicyContainNumbersValidator, self).__init__(*args, **kwargs)
 
-    @staticmethod
-    def clean(value):
+    def clean(self, value):
         return pwd.PasswordStats(value).numbers
 
     def compare(self, value, limit_value):
