@@ -78,6 +78,8 @@ class PolicyContainLowercaseValidator(PolicyBaseValidator):
     def js_requirement(self):
         return {'containLowercase': {
             'minLength': self.limit_value,
+            'regex': '[^a-z]',
+            'regex_flags': 'g',
             'text': gettext("Your input should contain at least minLength lower case character")
         }}
 
@@ -102,6 +104,8 @@ class PolicyContainUppercaseValidator(PolicyBaseValidator):
     def js_requirement(self):
         return {'containUppercase': {
             'minLength': self.limit_value,
+            'regex': '[^A-Z]',
+            'regex_flags': 'g',
             'text': gettext("Your input should contain at least minLength upper case character")
         }}
 
@@ -126,5 +130,7 @@ class PolicyContainNumbersValidator(PolicyBaseValidator):
     def js_requirement(self):
         return {'containNumbers': {
             'minLength': self.limit_value,
+            'regex': '[^0-9]',
+            'regex_flags': 'g',
             'text': gettext("Your input should contain at least minLength number")
         }}
