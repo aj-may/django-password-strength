@@ -20,8 +20,10 @@
             var body = $('body');
 
             $('.' + self.config.passwordClass).on('keyup', function() {
-                var password_strength_bar = $(this).parent().find('.password_strength_bar');
-                var password_strength_info = $(this).parent().find('.password_strength_info');
+                var parent = $(this).parent();
+                var password_strength_bar = parent.find('.password_strength_bar');
+                var password_strength_bar_wrap = parent.find('.progress-bar-wrap');
+                var password_strength_info = parent.find('.password_strength_info');
 
                 if( $(this).val() ) {
                     var result = zxcvbn( $(this).val() );
@@ -33,13 +35,14 @@
                         password_strength_bar.removeClass('progress-bar-warning').addClass('progress-bar-success');
                         password_strength_info.find('.label').addClass('hidden');
                     }
-
+                    password_strength_bar_wrap.show();
                     password_strength_bar.width( ((result.score+1)/5)*100 + '%' ).attr('aria-valuenow', result.score + 1);
                     password_strength_info.find('.password_strength_time').html(self.display_time(result.crack_time));
                     password_strength_info.removeClass('hidden');
                 } else {
                     password_strength_bar.removeClass('progress-bar-success').addClass('progress-bar-warning');
                     password_strength_bar.width( '0%' ).attr('aria-valuenow', 0);
+                    password_strength_bar_wrap.hide();
                     password_strength_info.addClass('hidden');
                 }
                 self.match_passwords($(this));
