@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-12 18:16-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:32
+msgid "be at least minLength characters long"
+msgstr "Deveria ter pelo menos minLength caractere(s)"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:36
+msgid "Your input should contain at least minLength special character"
+msgstr "Deveria ter pelo menos minLength caractere(s) especial"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:41
+msgid "Your input should contain at least minLength lower case character"
+msgstr "Deveria ter pelo menos minLength letra(s) minúscula(s)"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:46
+msgid "Your input should contain at least minLength upper case character"
+msgstr "Deveria ter pelo menos minLength letra(s) maiúscula(s)"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:51
+msgid "Your input should contain at least minLength number"
+msgstr "Deveria ter pelo menos minLength número(s)"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:89
+msgid "Password Requirements"
+msgstr "Requerimentos da senha"
+
+#: .\django_password_strength\static\django_password_strength\js\pass-requirements.js:93
+msgid "Your password should:"
+msgstr "Sua senha deveria:"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:78
+msgid "only an instant"
+msgstr "somente um instante"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:81
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minuto"
+msgstr[1] "minutos"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:85
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "hora"
+msgstr[1] "horas"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:89
+msgid "day"
+msgid_plural "days"
+msgstr[0] "dia"
+msgstr[1] "dias"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:93
+msgid "month"
+msgid_plural "months"
+msgstr[0] "mês"
+msgstr[1] "meses"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:97
+msgid "year"
+msgid_plural "years"
+msgstr[0] "ano"
+msgstr[1] "anos"
+
+#: .\django_password_strength\static\django_password_strength\js\password_strength.js:100
+msgid "centuries"
+msgstr "séculos"
